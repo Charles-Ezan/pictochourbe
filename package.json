@@ -1,0 +1,16 @@
+{
+  "name": "pictochourbe",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "uuidv4": "^6.2.12",
+    "ws": "^8.3.0"
+  }
+}
