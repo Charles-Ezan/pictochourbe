@@ -1,17 +1,15 @@
 //require our websocket library 
 var WebSocketServer = require('ws').Server;
  
-//creating a websocket server at port 9090 
+//creating a websocket server at port 9000 
 var wss = new WebSocketServer({port: 9000}); 
 
 //all connected to the server users 
 var users = {};
+var UsersName = [];
   
 //when a user connects to our sever 
-wss.on('connection', function(connection) {
-  
-   console.log("User connected");
-	 
+wss.on('connection', function(connection) {	 
    //when server gets a message from a connected user 
    connection.on('message', function(message) {
 	 
@@ -26,6 +24,12 @@ wss.on('connection', function(connection) {
 		  
       //switching type of the user message 
       switch (data.type) { 
+         case "updateUsers":
+            UsersName.push(data.name)
+            console.log("updating users")
+            console.log(UsersName)
+         break;
+            
          //when a user tries to login 
          case "login": 
             console.log("User logged", data.name); 

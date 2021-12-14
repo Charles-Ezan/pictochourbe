@@ -2,6 +2,7 @@
 var name; 
 var connectedUser; 
 var users = {};
+var userName = '';
 
 //connecting to our signaling server 
 var conn = new WebSocket('ws://localhost:9000'); 
@@ -12,40 +13,40 @@ conn.onopen = function () {
 
 //when we got a message from a signaling server 
 conn.onmessage = function (msg) { 
-    console.log("Got message", msg.data); 
-    var data = JSON.parse(msg.data); 
-    console.log("client data type:", data.type)
-    switch(data.type) { 
-        case "login": 
-           handleLogin(data.success); 
-           break; 
-        //when somebody wants to call us 
-        case "offer": 
-           handleOffer(data.offer, data.name); 
-           break; 
-        case "answer": 
-           handleAnswer(data.answer); 
-           break; 
-        //when a remote peer sends an ice candidate to us 
-        case "candidate": 
-           handleCandidate(data.candidate); 
-           break; 
-        case "leave": 
-           handleLeave(); 
-           break; 
-        default: 
-           break; 
-     } 
-  }; 
+   console.log("Got message", msg.data); 
+   var data = JSON.parse(msg.data); 
+   console.log("client data type:", data.type)
+   switch(data.type) { 
+      case "login": 
+         handleLogin(data.success); 
+         break; 
+      //when somebody wants to call us 
+      case "offer": 
+         handleOffer(data.offer, data.name); 
+         break; 
+      case "answer": 
+         handleAnswer(data.answer); 
+         break; 
+      //when a remote peer sends an ice candidate to us 
+      case "candidate": 
+         handleCandidate(data.candidate); 
+         break; 
+      case "leave": 
+         handleLeave(); 
+         break; 
+      default: 
+         break; 
+   } 
+}; 
 
  //alias for sending JSON encoded messages 
 function send(message) {
-    console.log("send message")
+   console.log("send message")
    //attach the other peer username to our messages
-    if (connectedUser) { 
-        message.name = connectedUser; 
-    }
-    conn.send(JSON.stringify(message));  
+   if (connectedUser) { 
+      message.name = connectedUser; 
+   }
+   conn.send(JSON.stringify(message));  
 };
 
 var loginPage = document.querySelector('#loginPage'); 
@@ -55,6 +56,7 @@ var usersBtn = document.querySelector('#usersBtn');
 
 loginBtn.addEventListener("click", function (event) { 
     const name = usernameInput.value; 
+    userName = name;
     console.log("pressed login button")
     if (name.length > 0) {
         send({ 
@@ -64,21 +66,22 @@ loginBtn.addEventListener("click", function (event) {
     } 
  });
 
- usersBtn.addEventListener("click", function (event) { 
-    console.log(users)
- });
+usersBtn.addEventListener("click", function (event) { 
+   console.log(userName)
+});
 
- function handleLogin(success) { 
-    console.log("login")
-    if (success === false) {
-       alert("Try a different username"); 
-    } else { 
-       console.log("success !")
-    }}
+function handleLogin(success) { 
+   console.log("login")
+   if (success === false) {
+      alert("Try a different username"); 
+   } else { 
+      console.log("success !")
+      send({type: "updateUsers", name: userName})
+   }}
 
  
 
- conn.onerror = function (err) { 
+conn.onerror = function (err) { 
    console.log("Got error", err); 
 }; 
 
