@@ -2,9 +2,9 @@
   "name": "pictochourbe",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
-    "test": "test"
+    "start": "electron ."
   },
   "author": "",
   "license": "ISC",
@@ -12,5 +12,8 @@
     "express": "^4.17.1",
     "uuidv4": "^6.2.12",
     "ws": "^8.3.0"
+  },
+  "devDependencies": {
+    "electron": "^16.0.4"
   }
 }
