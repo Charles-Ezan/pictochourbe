@@ -1,0 +1,85 @@
+.backgroundInputText {
+position: absolute;
+width: 318px;
+height: 162px;
+left: 62px;
+top: 672px;
+
+background: #C4C4C4;
+border-radius: 11px;
+}
+
+.whiteCanva{
+position: absolute;
+width: 310px;
+height: 119px;
+left: 66px;
+top: 675px;
+
+background: #FFFFFF;
+border-radius: 9px;
+}
+
+.sendButton{
+position: absolute;
+width: 76px;
+height: 29px;
+left: 297px;
+top: 800px;
+
+background: #FFFFFF;
+border: 1px solid #5A83B7;
+box-sizing: border-box;
+border-radius: 9px;
+}
+
+.outlineCanva{
+position: absolute;
+width: 305px;
+height: 115px;
+left: 68px;
+top: 677px;
+
+border: 1px solid #5A83B7;
+box-sizing: border-box;
+border-radius: 7px;
+}
+
+.backgroundUserName{
+position: absolute;
+width: 86px;
+height: 24px;
+left: 68px;
+top: 677px;
+
+background: #E1F2FE;
+border: 1px solid #5A83B7;
+box-sizing: border-box;
+border-radius: 7px 0px;
+}
+
+.userName{
+position: absolute;
+width: 77px;
+height: 16px;
+left: 79px;
+top: 674px;
+
+font-family: Monda;
+font-style: normal;
+font-weight: normal;
+font-size: 18px;
+line-height: 29px;
+
+color: #5A83B7;
+}
+
+.sendPictogram{
+position: absolute;
+width: 42px;
+height: 42px;
+left: 314px;
+top: 794px;
+
+background: url(/assets/send.png);
+}
